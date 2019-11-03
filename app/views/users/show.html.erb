@@ -1,0 +1,16 @@
+<br/>
+
+<center>
+ <div class="card border-secondary mb-6" style="max-width: 50rem;">
+  <div class="card-header">---- Coordonnées de <%= @user.first_name %> ----</div>
+    <div class="card-block">
+      <p class="card-text">Prénom : <%= @user.first_name %></p>
+      <p class="card-text">Nom de Famille : <%= @user.last_name %></p>
+      <p class="card-text">Email : <%= @user.email %></p>
+      <p class="card-text">Age : <%= @user.age %></p>
+      <p class="card-text">Ville : <%= link_to @user.city[:name], city_path(:id => @user.city_id) %></p>
+    </div>
+  </div>
+</center>
+
+</body>

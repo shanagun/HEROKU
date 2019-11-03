@@ -1,0 +1,33 @@
+<title>The gossip project</title>
+
+<% if params[:notice] %>
+ <div class="alert alert-success">
+  <strong>Success!</strong> We added your Gossip to the database.
+</div>
+<% end %>
+
+
+<center>
+  <div class="jumbotron" style="background-image :url(https://images.unsplash.com/photo-1496309732348-3627f3f040ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80); background-size: 100%;">
+    <h1 class="display-4" style="color: white">Bienvenue !</h1>
+    <img src="http://tgp.ae/wp-content/uploads/2017/03/TGP_Light_Logo.png">
+    <hr class="my-4">
+    <p style="color: white">Nous sommes ici pour gossiper entre nous.</p>
+    <%= link_to "Créer un Gossip", new_gossip_path, :class => "btn btn-sm btn-outline-info" %>
+  </div>
+
+
+<div class="card-columns">
+<% Gossip.all.each do |gossip| %>
+ <div class="card text-white bg-dark mb-3" style="max-width: 23rem;">
+  <div class="card-header bg-secondary">Gossip <%=gossip.id%></div>
+    <div class="card-block">
+      <p class="card-text">Auteur : <%= gossip.user.first_name %></p>
+      <p class="card-text">Titre : <%= gossip.title %></p>
+      <p class="card-text">Lien vers ce Gossip : <%= link_to gossip.title, gossip_path(:id => gossip.id) %></p>
+      <p class="card-title"><%= Comment.where(gossip_id: gossip.id).count%> commentaires</p>
+    </div>
+  </div>
+<% end %>
+</div>
+</center>
