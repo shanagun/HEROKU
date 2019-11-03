@@ -17,4 +17,10 @@ class User < ApplicationRecord
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "Cet e-mail n'est pas correct." }, uniqueness: true
   validates :age, :numericality => { :greater_than_or_equal_to => 0 }
 
+  #stocker en base le remember_digest
+  def remember(remember_token)
+    remember_digest = BCrypt::Password.create(remember_token)
+    self.update(remember_digest: remember_digest)
+  end
+
 end
